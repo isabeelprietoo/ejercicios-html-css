@@ -5,11 +5,33 @@ Este repositorio contiene los ejercicios y prácticas realizados en clase para a
 
 ## Ejercicios realizados
 
-Ejercicio 1: Mi primera página web
+Ejercicio 1: Animal favorito
 
-Ejercicio 2: Mi top 5
+Ejercicio 2: Catálogo productos
 
-Ejercicio 3: Animal favorito
+Ejercicio 3: Encuesta satisfacción
+
+Ejercicio 4: Formulario de inscripción
+
+Ejercicio 5: Horario clase
+
+Ejercicio 6: Mi primera página
+
+Ejercicio 7: Mi primera página
+
+Ejercicio 8: Mis enlaces
+
+Ejercicio 9: Mis favoritos
+
+Ejercicio 10: Presentación personal
+
+Ejercicio 11: Reserva biblioteca
+
+Ejercicio 12: Tabla alumnos
+
+Ejercicio 13: Ejemplo 1 CSS
+
+Ejercicio 14: Ejemplo 2
 
 ## Autor
 
