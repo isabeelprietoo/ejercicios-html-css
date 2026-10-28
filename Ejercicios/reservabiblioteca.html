@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de libros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 30px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #285943;
+        }
+
+        form, .busqueda {
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        fieldset {
+            border: 2px solid #72a68a;
+            padding: 20px;
+        }
+
+        legend {
+            color: #285943;
+            font-weight: bold;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 9px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 16px;
+            margin-top: 15px;
+            border: none;
+            cursor: pointer;
+            background: #285943;
+            color: white;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #285943;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #edf5ef;
+        }
+
+        .pendiente {
+            color: #b36b00;
+            font-weight: bold;
+        }
+
+        .confirmada {
+            color: #16803c;
+            font-weight: bold;
+        }
+
+        .entregada {
+            color: #1769aa;
+            font-weight: bold;
+        }
+
+        .cancelada {
+            color: #c62828;
+            font-weight: bold;
+        }
+
+        .tabla {
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Reserva de libros</h1>
+
+    <form id="formReserva">
+        <fieldset>
+            <legend>Datos del usuario</legend>
+
+            <label for="usuario">Nombre del usuario:</label>
+            <input type="text" id="usuario" name="usuario" required>
+
+            <label for="socio">Número de socio:</label>
+            <input type="text" id="socio" name="socio" required>
+
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" id="correo" name="correo" required>
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+            <legend>Datos del libro</legend>
+
+            <label for="libro">Título del libro:</label>
+            <input type="text" id="libro" name="libro" required>
+
+            <label for="autor">Autor:</label>
+            <input type="text" id="autor" name="autor" required>
+
+            <label for="fechaReserva">Fecha de reserva:</label>
+            <input type="date" id="fechaReserva"
+                   name="fechaReserva" required>
+
+            <label for="fechaRecogida">Fecha prevista de recogida:</label>
+            <input type="date" id="fechaRecogida"
+                   name="fechaRecogida" required>
+
+            <label for="prestamo">Tipo de préstamo:</label>
+            <select id="prestamo" name="prestamo" required>
+                <option value="">Selecciona una opción</option>
+                <option value="sala">En sala</option>
+                <option value="domicilio">A domicilio</option>
+            </select>
+
+            <label for="comentarios">Comentarios adicionales:</label>
+            <textarea id="comentarios" name="comentarios"
+                      rows="4"></textarea>
+        </fieldset>
+
+        <button type="submit">Enviar reserva</button>
+        <button type="reset">Limpiar campos</button>
+    </form>
+
+    <h2>Reservas registradas</h2>
+
+    <div class="busqueda">
+        <label for="buscar">Buscar por número de socio:</label>
+        <input type="search" id="buscar"
+               placeholder="Introduce el número de socio">
+    </div>
+
+    <div class="tabla">
+        <table id="tablaReservas">
+            <thead>
+                <tr>
+                    <th>N.º reserva</th>
+                    <th>N.º socio</th>
+                    <th>Usuario</th>
+                    <th>Libro</th>
+                    <th>Fecha de reserva</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-socio="1001">
+                    <td>1</td>
+                    <td>1001</td>
+                    <td>Pablo Molina</td>
+                    <td>El pirata</td>
+                    <td>14/10/2026</td>
+                    <td class="pendiente">Pendiente</td>
+                </tr>
+                <tr data-socio="1002">
+                    <td>2</td>
+                    <td>1002</td>
+                    <td>Daniel Romero</td>
+                    <td>La hipótesis del amor</td>
+                    <td>13/10/2026</td>
+                    <td class="confirmada">Confirmada</td>
+                </tr>
+                <tr data-socio="1003">
+                    <td>3</td>
+                    <td>1003</td>
+                    <td>Mirian Tirado</td>
+                    <td>Culpa mía</td>
+                    <td>12/10/2026</td>
+                    <td class="entregada">Entregada</td>
+                </tr>
+                <tr data-socio="1004">
+                    <td>4</td>
+                    <td>1004</td>
+                    <td>Sergio Trigo</td>
+                    <td>La sociedad de la nieve</td>
+                    <td>11/10/2026</td>
+                    <td class="pendiente">Pendiente</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const buscador = document.getElementById("buscar");
+        const filas = document.querySelectorAll("#tablaReservas tbody tr");
+
+        buscador.addEventListener("input", function () {
+            const numero = buscador.value.trim();
+
+            filas.forEach(function (fila) {
+                const socio = fila.dataset.socio;
+
+                if (socio.includes(numero)) {
+                    fila.style.display = "";
+                } else {
+                    fila.style.display = "none";
+                }
+            });
+        });
+
+        document.getElementById("formReserva").addEventListener(
+            "submit", function (evento) {
+                evento.preventDefault();
+                alert("Los datos de la reserva son correctos.");
+            }
+        );
+    </script>
+
+</body>
+</html>
