@@ -1,0 +1,10 @@
+# Archivos temporales
+*.tmp
+*.log
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Configuración local de Visual Studio Code
+.vscode/
